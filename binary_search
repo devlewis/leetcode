@@ -1,26 +1,15 @@
-const getMid = (low, high) => {
-	return Math.floor((high + low) / 2)
-}
+const searchInsert = (array, target, min, max) => {
+	if (min === undefined) min = 0;
+	if (max === undefined) max = array.length - 1;
 
-const recursiveBS = (list, item, low, high) => {
- // if there is no low or high, set low to 0 and high to the end of the list. 
-  (!low && !high ) && (low = 0, high = list.length - 1)
-
- // if there is still a list, get the middle index and its value (guess)
-	if (low <= high) {
-		let mid = getMid(low, high)
-	  let guess = list[mid]
-
- // if the guess is correct,    
-		if (guess === item) {
-      //exit out. 
-			console.log ("Your item is at " + (mid + 1) + " position")
-      //if the guess is too high, repeat search on lower half
-		} else if (guess > item) {
-			recursiveBS(list, item, low, mid - 1)
-      //if the guess is too low, repeat search on upper half
-		} else {
-			recursiveBS(list, item, mid + 1, high)
-		}	
-	}
-}
+	var guess = Math.floor(((max - min) / 2) + min);
+	
+	//if we've searched the whole list and haven't found target
+	if (max <= min && array[guess] !== target) return null;
+	
+	else if (array[guess] === target) return guess;
+	
+	else if (array[guess] < target) return searchInsert(array, target, guess + 1, max);
+	
+	else return searchInsert(array, target, min, guess - 1);
+};
