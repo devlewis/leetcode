@@ -1,0 +1,26 @@
+//Given an integer array nums, find the contiguous subarray 
+//(containing at least one number) which has the largest sum 
+//and return its sum.
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+
+var maxSubArray = function(nums) { 
+    if(nums.length === 0) return 0;
+    
+    let sum = 0;
+    //need to deal with possible negative values
+    let result = -Infinity;
+    
+    for(let i=0; i<nums.length; i++) {
+        sum += nums[i];
+        result = Math.max(sum, result);
+        //
+        sum = sum < 0 ? 0 : sum;
+    }
+    
+    return result; 
+    
+};
