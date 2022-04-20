@@ -1,0 +1,28 @@
+//Given a non-negative integer x, compute and return the square root of x.
+
+//Since the return type is an integer, the decimal digits are truncated, and only the integer part of the result is returned.
+
+//Note: You are not allowed to use any built-in exponent function or operator, such as pow(x, 0.5) or x ** 0.5.
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+//8-2 = 6
+//6-4 = 2
+
+// method of repeated subtraction: 
+//
+
+var mySqrt = function(x) {
+  let sub = 1;
+  let total =  x;
+  let count = 0;
+
+  while ((total - sub) >= 0) {
+      total -= sub;
+      count++;
+      sub += 2;
+  }
+  return count;
+};
